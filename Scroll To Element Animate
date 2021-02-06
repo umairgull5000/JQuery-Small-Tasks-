@@ -1,0 +1,5 @@
+jQuery("#button").click(function() {
+    jQuery('html, body').animate({
+        scrollTop: jQuery("#element").offset().top
+    }, 1000);
+});
