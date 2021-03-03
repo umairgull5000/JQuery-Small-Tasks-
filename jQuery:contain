@@ -1,0 +1,8 @@
+<script>
+  // Call this function to search the user from users listed
+	function owner_dashbaord_users_search($this) {
+	  var val = $this.val();
+		jQuery(".owner_dashbaord_users--grid").hide();
+		jQuery(".owner_dashbaord_users--grid:contains('"+val+"')").show();
+	}    
+</script>
