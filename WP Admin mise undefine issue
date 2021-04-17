@@ -1,0 +1,13 @@
+function admin_remove_msie_issue() { ?>
+<script type="text/javascript">
+  jQuery.browser = {};
+  (function () {
+    jQuery.browser.msie = false;
+    jQuery.browser.version = 0;
+  if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+    jQuery.browser.msie = true;
+    jQuery.browser.version = RegExp.$1;
+  }
+  })();
+</script>
+<?php } add_action("admin_head", "admin_remove_msie_issue", 1);
