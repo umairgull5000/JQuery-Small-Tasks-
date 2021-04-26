@@ -4,5 +4,16 @@
 	  var val = $this.val();
 		jQuery(".owner_dashbaord_users--grid").hide();
 		jQuery(".owner_dashbaord_users--grid:contains('"+val+"')").show();
-	}    
+	}
+	
+	
+			jQuery(".open-datalist").keyup(function() {
+				var val = jQuery(this).val();
+				if(val == "") {
+					jQuery(".data_list--box > div").show();
+				} else {
+					jQuery(".data_list--box > div").hide();
+					jQuery(".data_list--box > div[data-search*='"+ val +"']").show();
+				}
+			});
 </script>
