@@ -1,0 +1,54 @@
+<?php
+
+
+function theappchefs_custom_jquery() { ?>
+	<style type="text/css">
+		select option{display: none}
+		.select-box{position:relative}
+		.select-box>svg{width:10px;height:20px;position:absolute;top:16px;right:16px}
+		.select-box-option{display:none;overflow-y:auto;}
+
+		.select-box-option{ border:solid 1px #eaeaec; height: 160px; }
+		.select-box-option > div:hover,
+		.select-box-option > div { padding: 12px; border-bottom: solid 1px #eaeaec; background-color: #ffffff; opacity: 0.45; font-size: 14px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.14; letter-spacing: normal; text-align: center; color: #312f44; cursor: pointer; }
+		.select-box-option > div:hover { opacity: 1; }
+	</style>
+	<script>jQuery(document).ready(function(){
+		jQuery("select").each(function(){
+			var $this = jQuery(this);
+			$this.wrapAll('<div class="select-box"></div>');
+			$this.before('<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>');
+			$this.after('<div class="select-box-option"></div>');
+			$this.children("option").each(function(){
+				var val = jQuery(this).val();
+				var text = jQuery(this).text();
+				$this.next().append('<div value="'+val+'">'+text+'</div>');
+			});
+			$this.click(function(e){
+				e.preventDefault();
+				this.blur();
+				window.focus();
+				var $this_this = jQuery(this);
+				setTimeout(function(){ $this_this.next().toggleClass("active"); }, 500);
+				$this_this.next().slideToggle();
+			});
+			$this.next().children().click(function(){
+				var val = jQuery(this).attr("value");
+				$this.val(val);
+				var $this_this = jQuery(this);
+				setTimeout(function(){ $this_this.parent().toggleClass("active"); }, 500);
+				$this_this.parent().slideUp();
+				$this.trigger('change');
+			});
+		});
+		jQuery("*").click(function(e) {
+			var container = jQuery(".select-box-option.active");
+			if (!container.is(e.target) && container.has(e.target).length === 0) {
+				container.toggleClass("active");
+				container.slideUp();
+			}
+		});
+	});</script>
+<?php } add_action("wp_head", "theappchefs_custom_jquery", 999999);
+
+?>
