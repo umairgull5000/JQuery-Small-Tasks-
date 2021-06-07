@@ -1,0 +1,27 @@
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+ jQuery( function() {
+  jQuery( "#sortable" ).sortable({
+   revert: true
+  });
+  jQuery( "#draggable" ).draggable({
+   connectToSortable: "#sortable",
+   helper: "clone",
+   revert: "invalid"
+  });
+  jQuery( "ul, li" ).disableSelection();
+ });
+</script>
+  
+<ul>
+  <li id="draggable" class="ui-state-highlight">Drag me down</li>
+</ul>
+ 
+<ul id="sortable">
+  <li class="ui-state-default">Item 1</li>
+  <li class="ui-state-default">Item 2</li>
+  <li class="ui-state-default">Item 3</li>
+  <li class="ui-state-default">Item 4</li>
+  <li class="ui-state-default">Item 5</li>
+</ul>
