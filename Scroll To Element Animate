@@ -3,3 +3,8 @@ jQuery("#button").click(function() {
         scrollTop: jQuery("#element").offset().top
     }, 1000);
 });
+
+jQuery('a[href*="#"]').on('click', function (e) {
+  e.preventDefault();
+  jQuery('html, body').animate( { scrollTop: jQuery(jQuery(this).attr('href')).offset().top, }, 500, 'linear' )
+});
