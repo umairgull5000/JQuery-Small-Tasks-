@@ -1,0 +1,25 @@
+<script>
+$(document).ready(function(){
+    // Toggle dropdown menu on click of trigger element
+    $(".dropdown-toggle").click(function(){
+        // Hide other dropdown menus in case of multiple dropdowns
+        $(".dropdown-menu").not($(this).next()).slideUp("fast");
+        
+        // Toggle the current dropdown menu
+        $(this).next(".dropdown-menu").slideToggle("fast");
+        
+        // Showing the hint message
+        $(".hint").html("A click <b>inside</b> the dropdown is detected.");
+    });
+ 
+    // Hide dropdown menu on click outside
+    $(document).on("click", function(event){
+        if(!$(event.target).closest(".dropdown").length){
+            $(".dropdown-menu").slideUp("fast");
+            
+            // Showing the hint message
+            $(".hint").html("A click <b>outside</b> the dropdown is detected.");
+        }
+    });
+});
+</script>
